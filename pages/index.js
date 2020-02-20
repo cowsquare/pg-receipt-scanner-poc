@@ -74,7 +74,7 @@ Index.getInitialProps = ({ store, isServer }) => {
 
 const mapStateToProps = state => {
   return {
-    counter: state
+    counter: state.counter
   }
 }
 

@@ -4,8 +4,13 @@
   "dependencies": {
     "@material-ui/core": "latest",
     "@material-ui/icons": "latest",
+    "@zeit/next-css": "^1.0.1",
+    "axios": "^0.19.2",
+    "lodash": "^4.17.15",
+    "material-ui-upload": "^1.2.1",
     "next": "latest",
     "next-redux-wrapper": "latest",
+    "qs": "^6.9.1",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
     "react-redux": "6.0.0",
