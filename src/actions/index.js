@@ -1,7 +1,8 @@
-import { INCREMENT, DECREMENT, UPLOAD_IMAGE } from '../constants'
+import { INCREMENT, DECREMENT, UPLOAD_IMAGE, UPLOAD_LOADING } from '../constants'
 import { stringify } from 'qs';
 import axios from 'axios';
 import _ from 'lodash';
+import Router from 'next/router'
 
 export const request = (method, api, params) => {
   const query =
@@ -13,36 +14,79 @@ export const request = (method, api, params) => {
   if (!process.browser) {
     return axios[method](`${api}${query}`, config);
   }
-
-  console.log('am i here?', `${api}${query}`);
-
   return axios[method](`${api}${query}`, config);
 };
 
-export const increment = (isServer) => {
-  return dispatch => {
-    dispatch({
-      type: INCREMENT,
-      from: isServer ? 'server' : 'client'
-    })
-  }
-}
+export const scanReceipt = async (dispatch, params) => {
+  dispatch({
+    type: UPLOAD_LOADING,
+    data: true,
+  })
 
-export const decrement = (isServer) => {
-  return dispatch => {
-    dispatch({
-      type: DECREMENT,
-      from: isServer ? 'server' : 'client'
-    })
-  }
-}
+  const formData = new FormData();
+  formData.append('file', params);
 
+  const url = 'https://asia-east2-pandg-268816.cloudfunctions.net/process';
+  const config = {
+    method: 'POST',
+    body: formData,
+  };
 
-export const getData = (dispatch) => {
-  return request('get', 'https://dog.ceo/api/breeds/image/random').then(({ data }) => {
-    dispatch({
-      type: UPLOAD_IMAGE,
-      data,
+  const myRequest = new Request(url, config);
+
+  const tokenResult = await fetch(myRequest)
+    .then(function(response) {
+      return response.json();
     })
+    .catch(function(e){
+      console.log(e);
+    });
+
+/*  const tokenResult = {
+    "message": "SUCCESS: Image uploaded successfully",
+    "status": "success",
+    "status_code": 2,
+    "token": "CDZq8d6Y1dxD32df",
+    "success": true,
+    "code": 200,
+    "duplicate": true,
+    "duplicateToken": "Z1WtHisqOx7cK7Mo"
+  };*/
+
+  Router.push('/upload');
+
+  const data = await getResults(tokenResult);
+
+  dispatch({
+    type: UPLOAD_IMAGE,
+    data,
+  });
+  dispatch({
+    type: UPLOAD_LOADING,
+    data: false,
   })
 }
+
+const delay = (time) => {
+  return new Promise(function(resolve) {
+    setTimeout(resolve, time)
+  });
+}
+
+const getResults = async (tokenRes) => {
+  const url = 'https://asia-east2-pandg-268816.cloudfunctions.net/result';
+  let resultResponse;
+  do {
+    resultResponse = await request('get', url, { token: tokenRes.token })
+      .catch(function(e){
+        console.log(e);
+      });
+    if(!resultResponse || (resultResponse && resultResponse.data && resultResponse.data.status !== 'done')) {
+      await delay(5000);
+    } else {
+      return resultResponse.data.result;
+    }
+
+  } while (!resultResponse || (resultResponse && resultResponse.data && resultResponse.data.status !== 'done'))
+
+};
