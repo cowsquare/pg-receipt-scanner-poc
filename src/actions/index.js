@@ -22,6 +22,7 @@ export const scanReceipt = async (dispatch, params) => {
     type: UPLOAD_LOADING,
     data: true,
   })
+  Router.push('/upload');
 
   const formData = new FormData();
   formData.append('file', params);
@@ -53,7 +54,6 @@ export const scanReceipt = async (dispatch, params) => {
     "duplicateToken": "Z1WtHisqOx7cK7Mo"
   };*/
 
-  Router.push('/upload');
 
   const data = await getResults(tokenResult);
 

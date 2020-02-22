@@ -2,12 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { Grid, GridList, GridListTile, GridListTileBar } from '@material-ui/core';
-
-import BottomBar from '../src/components/BottomBar';
-import NavBar from '../src/components/NavBar';
-
-import Link from '@material-ui/core/Link';
+import { GridList, GridListTile, GridListTileBar } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -94,26 +89,22 @@ function ResponsiveDrawer() {
   const classes = useStyles();
 
   return (
-    <Grid container align-content-xs-center={'true'} className={classes.root}>
-      <NavBar />
-      <GridList className={classes.gridList} cols={2}>
-        {tileData.map(tile => (
-          <GridListTile key={tile.img}>
-            <img src={tile.img} alt={tile.title} />
-            <GridListTileBar
-              title={tile.title}
-              subtitle={tile.subtitle}
-              classes={{
-                root: classes.titleBar,
-                title: classes.title,
-                subtitle: classes.subtitle,
-              }}
-            />
-          </GridListTile>
-        ))}
-      </GridList>
-      <BottomBar />
-    </Grid>
+    <GridList className={classes.gridList} cols={2}>
+      {tileData.map(tile => (
+        <GridListTile key={tile.img}>
+          <img src={tile.img} alt={tile.title} />
+          <GridListTileBar
+            title={tile.title}
+            subtitle={tile.subtitle}
+            classes={{
+              root: classes.titleBar,
+              title: classes.title,
+              subtitle: classes.subtitle,
+            }}
+          />
+        </GridListTile>
+      ))}
+    </GridList>
   );
 }
 

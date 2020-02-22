@@ -6,12 +6,14 @@ import theme from '../src/utils/theme'
 class _Document extends Document {
   render () {
     return (
-      <html lang='pt-BR' dir='ltr'>
+      <html lang='en-US' dir='ltr'>
         <Head>
           <meta charSet="utf-8" />
           <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no" />
           <meta name="theme-color" content={theme.palette.primary.main} />
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+          <link href="/static/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+          <link href="/static/images/apple-icon-144x144.png" rel="apple-touch-icon" />
         </Head>
         <body>
           <Main />

@@ -27,6 +27,13 @@ const rows = [
 ];
 
 function DenseTable({ classes }) {
+  const [state, setState] = React.useState({
+    switch: true,
+  });
+
+  const handleChange = event => {
+    setState({ ...state, switch: event.target.checked });
+  };
 
   return (
     <TableContainer className={classes.table}>
@@ -46,7 +53,8 @@ function DenseTable({ classes }) {
             </TableCell>
             <TableCell align="right">
               <Switch
-                checked
+                checked={state.switch}
+                onChange={handleChange}
                 color="primary"
                 inputProps={{ 'aria-label': 'primary checkbox' }}
               />

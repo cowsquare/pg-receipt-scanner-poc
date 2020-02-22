@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
-import BottomBar from '../src/components/BottomBar';
-import NavBar from '../src/components/NavBar';
-import Link from '@material-ui/core/Link';
+import Link from 'next/link';
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import ProfileTable from '../src/components/ProfileTable'
@@ -16,7 +14,6 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexGrow: 1,
-    marginTop: 80,
   },
   space: {
     padding: theme.spacing(1)
@@ -36,71 +33,64 @@ function ResponsiveDrawer() {
   const classes = useStyles();
 
   return (
-    <Grid container align-content-xs-center={'true'}>
-      <NavBar />
-      <Grid container align-content-xs-space-around={'true'} className={classes.root}>
-        <Grid
-          xs={12}
-          justify="center"
-          alignItems="center"
-          container
-          direction="row"
-          className={classes.space}
-        >
-          <Avatar alt="Norris Fung" src="/static/images/ironman.jpg" aria-label="Norris Fung" className={classes.avatar}>
-            NF
-          </Avatar>
-        </Grid>
-
-        <Grid
-          xs={12}
-          justify="center"
-          alignItems="center"
-          container
-          direction="row"
-        >
-          <Typography variant="h5">
-            Norris Fung
-          </Typography>
-        </Grid>
-        <Grid
-          xs={12}
-          justify="center"
-          alignItems="center"
-          container
-          direction="row"
-        >
-          <Card className={classes.card}>
-            <Link href="/redeem">
-              <CardContent>
-                <Typography variant="h6">
-                  20 Points
-                </Typography>
-              </CardContent>
-            </Link>
-          </Card>
-          <Card className={classes.card}>
-            <Link href="https://www.pg-o2o.com/hk/">
-              <CardContent>
-                <Typography variant="h6">
-                  My Coupon
-                </Typography>
-              </CardContent>
-            </Link>
-          </Card>
-        </Grid>
-        <Grid
-          xs={12}
-          justify="center"
-          alignItems="center"
-          container
-          direction="row"
-        >
-          <ProfileTable />
-        </Grid>
+    <Grid container align-content-xs-space-around={'true'} className={classes.root}>
+      <Grid
+        justify="center"
+        alignItems="center"
+        container
+        direction="row"
+        className={classes.space}
+      >
+        <Avatar alt="Norris Fung" src="/static/images/ironman.jpg" aria-label="Norris Fung" className={classes.avatar}>
+          NF
+        </Avatar>
       </Grid>
-      <BottomBar />
+
+      <Grid
+        justify="center"
+        alignItems="center"
+        container
+        direction="row"
+      >
+        <Typography variant="h5">
+          Norris Fung
+        </Typography>
+      </Grid>
+      <Grid
+        justify="center"
+        alignItems="center"
+        container
+        direction="row"
+      >
+        <Card className={classes.card}>
+          <Link href="/redeem">
+            <CardContent>
+              <Typography variant="h6">
+                20 Points
+              </Typography>
+            </CardContent>
+          </Link>
+        </Card>
+        <Card className={classes.card}>
+          <Link href="https://www.pg-o2o.com/hk/">
+            <CardContent>
+              <Typography variant="h6">
+                My Coupon
+              </Typography>
+            </CardContent>
+          </Link>
+        </Card>
+      </Grid>
+      <Grid
+        justify="center"
+        alignItems="center"
+        container
+        direction="row"
+      >
+        <ProfileTable />
+      </Grid>
     </Grid>
+
   );
 }
 

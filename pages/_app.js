@@ -1,12 +1,14 @@
-import React from 'react'
-import App, { Container } from 'next/app'
+import React, { Fragment } from 'react'
+import App from 'next/app'
 import Head from 'next/head'
 import withRedux from 'next-redux-wrapper'
 import { Provider } from 'react-redux'
-import { MuiThemeProvider } from '@material-ui/core/styles'
+import {makeStyles, MuiThemeProvider} from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import store from '../src/store'
 import theme from '../src/utils/theme'
+import NavBar from "../src/components/NavBar";
+import BottomBar from "../src/components/BottomBar";
 
 const _App = withRedux(store)(
   class _App extends App {
@@ -30,20 +32,24 @@ const _App = withRedux(store)(
         Component,
         pageProps,
         store
-      } = this.props
+      } = this.props;
 
       return (
-        <Container>
+        <Fragment>
           <Head>
-            <title>NextJS - With Redux and Material UI</title>
+            <title>P&G Receipt Scanner</title>
           </Head>
           <MuiThemeProvider theme={theme}>
             <CssBaseline />
             <Provider store={store}>
-              <Component {...pageProps} />
+              <div style={{ marginTop: '60px', marginBottom: '60px', display: 'flex' }}>
+                <NavBar />
+                <Component {...pageProps} />
+                <BottomBar />
+              </div>
             </Provider>
           </MuiThemeProvider>
-        </Container>
+        </Fragment>
       )
     }
   }

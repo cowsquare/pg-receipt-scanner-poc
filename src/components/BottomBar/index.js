@@ -4,11 +4,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import {
   BottomNavigationAction,
   BottomNavigation,
-  Link
 } from '@material-ui/core';
+import Link from 'next/link';
 
 import { Home } from '@material-ui/icons';
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import RedeemIcon from '@material-ui/icons/Redeem';
 import UploadButton from '../UploadButton';
@@ -31,20 +30,19 @@ export default function SimpleBottomNavigation() {
       onChange={(event, newValue) => {
         setValue(newValue);
       }}
-      showLabels
       className={classes.root}
     >
       <Link href="/shop">
-        <BottomNavigationAction showLabel={true} label="Shop" icon={<ShoppingCartIcon />} />
+        <BottomNavigationAction label="Shop" showLabel={true} icon={<ShoppingCartIcon />} />
       </Link>
-      <Link href="/">
-        <BottomNavigationAction showLabel={true} label="Home" icon={<Home />} />
+      <Link href="/index">
+        <BottomNavigationAction label="Home" showLabel={true} icon={<Home />} />
       </Link>
-      <Link href="/shop">
-        <BottomNavigationAction showLabel={true} label="Receipt Scanner" icon={<UploadButton />} />
+      <Link href="#">
+        <BottomNavigationAction label="Scanner" showLabel={true} icon={<UploadButton />} />
       </Link>
       <Link href="/redeem">
-        <BottomNavigationAction showLabel={true} label="Coupons" icon={<RedeemIcon />} />
+        <BottomNavigationAction label="Coupons" showLabel={true} icon={<RedeemIcon />} />
       </Link>
     </BottomNavigation>
   );

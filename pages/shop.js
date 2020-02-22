@@ -6,18 +6,11 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-import BottomBar from '../src/components/BottomBar';
-import NavBar from '../src/components/NavBar';
 import SearchBar from '../src/components/SearchBar';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    flexGrow: 1,
-    // padding: theme.spacing(4)
-  },
   catImg: {
     objectFit: 'cover',
     width: '100%',
@@ -43,59 +36,55 @@ function ResponsiveDrawer() {
   const classes = useStyles();
 
   return (
-    <Grid container align-content-xs-center={'true'}>
-      <NavBar />
-      <Grid container align-content-xs-space-around={'true'}>
-        <Grid style={{marginTop: '60px'}} xs={12} item className={classes.search}>
-          <SearchBar />
+    <Grid container align-content-xs-space-around={'true'}>
+      <Grid xs={12} item className={classes.search}>
+        <SearchBar />
+      </Grid>
+      <Grid container direction={'row'} align-content-xs-between={'true'}	>
+        <Grid xs={6} item className={classes.catBtn}>
+          <Button variant="contained" color="primary" fullWidth>
+            Category
+          </Button>
         </Grid>
-        <Grid container direction={'row'} align-content-xs-between={'true'}	>
-          <Grid xs={6} item className={classes.catBtn}>
-            <Button variant="contained" color="primary" fullWidth>
-              Category
-            </Button>
-          </Grid>
-          <Grid xs={6} item className={classes.catBtn}>
-            <Button variant="contained" color="primary" fullWidth>
-              Brand
-            </Button>
-          </Grid>
-        </Grid>
-        <Grid xs={12} item className={classes.cat}>
-          <Link href="#">
-            <img src="/static/images/cat3.png" className={classes.catImg} />
-            <Grid xs={12} container>
-              <Typography variant="h6" className={classes.title}>
-                Fresh Food
-              </Typography>
-              <NavigateNextIcon fontSize="large" />
-            </Grid>
-          </Link>
-        </Grid>
-        <Grid xs={12} item className={classes.cat}>
-          <Link href="#">
-            <img src="/static/images/cat2.png" className={classes.catImg} />
-            <Grid xs={12} container>
-              <Typography variant="h6" className={classes.title}>
-                Shampoo & Conditioner
-              </Typography>
-              <NavigateNextIcon fontSize="large" />
-            </Grid>
-          </Link>
-        </Grid>
-        <Grid xs={12} item className={classes.cat}>
-          <Link href="#">
-            <img src="/static/images/cat1.png" className={classes.catImg} />
-            <Grid xs={12} container>
-              <Typography variant="h6" className={classes.title}>
-                Detergent
-              </Typography>
-              <NavigateNextIcon fontSize="large" />
-            </Grid>
-          </Link>
+        <Grid xs={6} item className={classes.catBtn}>
+          <Button variant="contained" color="primary" fullWidth>
+            Brand
+          </Button>
         </Grid>
       </Grid>
-      <BottomBar />
+      <Grid xs={12} item className={classes.cat}>
+        <Link href="#">
+          <img src="/static/images/cat3.png" className={classes.catImg} />
+          <Grid xs={12} container>
+            <Typography variant="h6" className={classes.title}>
+              Fresh Food
+            </Typography>
+            <NavigateNextIcon fontSize="large" />
+          </Grid>
+        </Link>
+      </Grid>
+      <Grid xs={12} item className={classes.cat}>
+        <Link href="#">
+          <img src="/static/images/cat2.png" className={classes.catImg} />
+          <Grid xs={12} container>
+            <Typography variant="h6" className={classes.title}>
+              Shampoo & Conditioner
+            </Typography>
+            <NavigateNextIcon fontSize="large" />
+          </Grid>
+        </Link>
+      </Grid>
+      <Grid xs={12} item className={classes.cat}>
+        <Link href="#">
+          <img src="/static/images/cat1.png" className={classes.catImg} />
+          <Grid xs={12} container>
+            <Typography variant="h6" className={classes.title}>
+              Detergent
+            </Typography>
+            <NavigateNextIcon fontSize="large" />
+          </Grid>
+        </Link>
+      </Grid>
     </Grid>
   );
 }

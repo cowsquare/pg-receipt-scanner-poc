@@ -18,7 +18,6 @@ import {
   AppBar,
   Divider,
   CardHeader,
-  Link,
   List,
   ListItem,
   ListItemIcon,
@@ -28,7 +27,8 @@ import {
   IconButton,
   Toolbar
 } from "@material-ui/core";
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import Link from 'next/link';
+
 import UploadButton from '../UploadButton';
 
 const drawerWidth = 240;
@@ -119,7 +119,7 @@ function ResponsiveDrawer(props) {
           <ListItemIcon><CategoryIcon /></ListItemIcon>
           <ListItemText primary={'Category'}>Category</ListItemText>
         </ListItem>
-        <Link href="/shopping">
+        <Link href="/shop">
           <ListItem button key={'Shopping Cart'}>
             <ListItemIcon><ShoppingCartIcon /></ListItemIcon>
             <ListItemText primary={'Shopping Cart'}>Shopping Cart</ListItemText>
