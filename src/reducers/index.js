@@ -1,4 +1,4 @@
-import { INCREMENT, DECREMENT, UPLOAD_IMAGE, UPLOAD_LOADING } from '../constants'
+import { UPLOAD_IMAGE, UPLOAD_LOADING, CLEAR_IMAGE } from '../constants'
 import { combineReducers } from 'redux'
 
 /*const initialState = {
@@ -424,35 +424,10 @@ import { combineReducers } from 'redux'
 }*/
 
 const initialState = {
-  value: 0,
   action: null,
-  from: null,
   summaryItems: [],
   data: {},
   lineItems: [],
-}
-
-export const counter = (state = initialState, action) => {
-  switch (action.type) {
-    case INCREMENT:
-      return {
-        ...state,
-        value: state.value + 1,
-        action: 'increment',
-        from: action.from
-      }
-
-    case DECREMENT:
-      return {
-        ...state,
-        value: state.value - 1,
-        action: 'decrement',
-        from: action.from
-      }
-
-    default:
-      return state
-  }
 }
 
 export const upload = (state = initialState, action)  => {
@@ -465,6 +440,14 @@ export const upload = (state = initialState, action)  => {
         lineItems: lineItems || [],
         summaryItems: summaryItems || [],
         action: 'upload',
+      }
+    case CLEAR_IMAGE:
+      return {
+        ...state,
+        data: {},
+        lineItems: [],
+        summaryItems: [],
+        action: 'clear',
       }
     case UPLOAD_LOADING:
       return {
@@ -480,5 +463,4 @@ export const upload = (state = initialState, action)  => {
 
 export default combineReducers({
   upload,
-  counter
 })

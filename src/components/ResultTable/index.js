@@ -53,6 +53,9 @@ const ResultTable = ({ data, classes, key, columns, title, isLoading }) => {
           {isLoading ? (
             <caption className={classes.spinner}>
               <CircularProgress/>
+              <Typography className={classes.title} variant="h6">
+                Analyzing Receipts...
+              </Typography>
             </caption>) : ''
           }
           <TableHead>

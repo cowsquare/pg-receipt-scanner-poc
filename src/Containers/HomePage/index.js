@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Carousel from '../../components/Carousel';
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
+import Link from 'next/link';
 
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import CardMedia from "@material-ui/core/CardMedia";
@@ -35,36 +36,76 @@ const promos = [
     title: "Today Special",
     sub: "Power Brush B1G1",
     img: "/static/images/hp1.png",
+    src: "/promos/braun"
   },
   {
     title: "Limited Offer",
     sub: "Mannings Crazy!",
     img: "/static/images/hp2.png",
+    src: "/promos/mannings",
   },
   {
     title: "Only For You",
     sub: "Wat Member only",
     img: "/static/images/hp3.png",
+    src: "/promos/watsons",
   },
   {
     title: "Festive Hot",
     sub: "After Mooncake?",
     img: "/static/images/hp4.png",
+    link: "https://www.facebook.com/wellcome.supermarket/photos/a.455443234456/10157142379674457/?type=3&theater"
   },
   {
     title: "Summer Special",
     sub: "Hokkaido Snacks",
     img: "/static/images/hp5.png",
+    src: "/promos/hokkaido",
   },
   {
     title: "Big Clearance",
     sub: "Last 3 days",
     img: "/static/images/hp6.png",
+    link: "https://www.facebook.com/parknshophk/photos/a.1449666655268995/2499945073574476/?type=3&theater",
   },
 ]
 
 const LinteItemsTable = () => {
   const classes = styles();
+
+  const PromoCard = ({ promo, classes }) => {
+    return (
+        <Card
+          variant="outlined"
+        >
+          <CardMedia
+            className={classes.media}
+            image={promo.img}
+            title={promo.title}
+          />
+          <CardContent className={classes.specialContent}>
+            <Typography>
+              {promo.title}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {promo.sub}
+            </Typography>
+          </CardContent>
+        </Card>
+    )
+  };
+  const LinkCard = React.forwardRef(({ promo, classes, onClick, href }, ref) => (
+    <a
+      onClick={onClick}
+      href={href}
+      ref={ref}
+    >
+      <PromoCard
+        promo={promo}
+        classes={classes}
+      />
+    </a>
+  ));
 
   return (
     <Grid container align-content-xs-center={'true'}>
@@ -73,22 +114,21 @@ const LinteItemsTable = () => {
         {
           promos.map((promo, i) => (
             <Grid item xs={6} className={classes.special} key={i}>
-              <Card variant="outlined">
-                <CardMedia
-                  className={classes.media}
-                  image={promo.img}
-                  title={promo.title}
-                />
-                <CardContent className={classes.specialContent}>
-                  <Typography>
-                    {promo.title}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary" component="p">
-                    {promo.sub}
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
+              {promo.src ? (
+                <Link href={promo.src} passHref>
+                  <LinkCard
+                    promo={promo}
+                    classes={classes}
+                  />
+                </Link>) : (
+                  <a href={promo.link}>
+                    <PromoCard
+                      promo={promo}
+                      classes={classes}
+                    />
+                  </a>
+              )}
+              </Grid>
           ))
         }
       </Grid>

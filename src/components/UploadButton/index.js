@@ -27,7 +27,9 @@ class MediaCapture extends Component {
   };
 
   handleCapture = (e) => {
-    this.props.handleUpload(e.target.files[0]);
+    const params = e.target.files[0];
+    this.fileInput.value = "";
+    this.props.handleUpload(params);
   };
 
   render() {
@@ -41,6 +43,7 @@ class MediaCapture extends Component {
           id="icon-button-photo"
           onChange={this.handleCapture}
           type="file"
+          ref={ref=> this.fileInput = ref}
         />
         <label htmlFor="icon-button-photo">
           <PhotoCamera />

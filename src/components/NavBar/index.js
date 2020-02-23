@@ -100,7 +100,7 @@ function ResponsiveDrawer(props) {
       <Divider />
       <List>
         <Link href="/account">
-          <ListItem button key={'Profile'}>
+          <ListItem button key={'Profile'} onClick={handleDrawerToggle}>
             <ListItemIcon><PersonIcon /></ListItemIcon>
             <ListItemText primary={'Profile'}>Profile</ListItemText>
           </ListItem>
@@ -110,7 +110,7 @@ function ResponsiveDrawer(props) {
           <ListItemText primary={'Upload Receipt'}>Upload Receipt</ListItemText>
         </ListItem>
         <Link href="/redeem">
-          <ListItem button key={'Redeem Award'}>
+          <ListItem button key={'Redeem Award'} onClick={handleDrawerToggle}>
             <ListItemIcon><CardGiftcardIcon /></ListItemIcon>
             <ListItemText primary={'Redeem Award'}>Redeem Award</ListItemText>
           </ListItem>
@@ -120,12 +120,12 @@ function ResponsiveDrawer(props) {
           <ListItemText primary={'Category'}>Category</ListItemText>
         </ListItem>
         <Link href="/shop">
-          <ListItem button key={'Shopping Cart'}>
+          <ListItem button key={'Shopping Cart'} onClick={handleDrawerToggle}>
             <ListItemIcon><ShoppingCartIcon /></ListItemIcon>
             <ListItemText primary={'Shopping Cart'}>Shopping Cart</ListItemText>
           </ListItem>
         </Link>
-        <Link href="/feedback">
+        <Link href="/feedback" onClick={handleDrawerToggle}>
           <ListItem button key={'Feedback'}>
             <ListItemIcon><FeedbackIcon /></ListItemIcon>
             <ListItemText primary={'Feedback'}>Feedback</ListItemText>

@@ -1,4 +1,4 @@
-import { INCREMENT, DECREMENT, UPLOAD_IMAGE, UPLOAD_LOADING } from '../constants'
+import { UPLOAD_IMAGE, UPLOAD_LOADING, CLEAR_IMAGE } from '../constants'
 import { stringify } from 'qs';
 import axios from 'axios';
 import _ from 'lodash';
@@ -18,6 +18,10 @@ export const request = (method, api, params) => {
 };
 
 export const scanReceipt = async (dispatch, params) => {
+  dispatch({
+    type: CLEAR_IMAGE,
+    data: true,
+  })
   dispatch({
     type: UPLOAD_LOADING,
     data: true,

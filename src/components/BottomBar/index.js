@@ -38,9 +38,7 @@ export default function SimpleBottomNavigation() {
       <Link href="/index">
         <BottomNavigationAction label="Home" showLabel={true} icon={<Home />} />
       </Link>
-      <Link href="#">
-        <BottomNavigationAction label="Scanner" showLabel={true} icon={<UploadButton />} />
-      </Link>
+      <BottomNavigationAction label="Scanner" showLabel={true} icon={<UploadButton />} />
       <Link href="/redeem">
         <BottomNavigationAction label="Coupons" showLabel={true} icon={<RedeemIcon />} />
       </Link>
