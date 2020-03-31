@@ -8,7 +8,7 @@
     "axios": "^0.19.2",
     "infinite-react-carousel": "^1.2.11",
     "lodash": "^4.17.15",
-    "next": "^9.2.2",
+    "next": "^9.3.2",
     "next-redux-wrapper": "^5.0.0",
     "qs": "^6.9.1",
     "react": "^16.8.0",
