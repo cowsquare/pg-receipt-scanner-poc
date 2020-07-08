@@ -32,7 +32,7 @@ const Breadcrumb = ({ cat1, cat2, cat3 }) => {
   );
 }
 
-const useStyles = makeStyles(theme => console.log(theme) || ({
+const useStyles = makeStyles(theme => ({
   breadcrumb: {
     padding: theme.spacing(1)
   },
