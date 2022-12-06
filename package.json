@@ -10,7 +10,7 @@
     "lodash": "^4.17.15",
     "next": "^9.2.2",
     "next-redux-wrapper": "^5.0.0",
-    "qs": "^6.9.1",
+    "qs": "^6.9.7",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
     "react-image-gallery": "^1.0.6",
